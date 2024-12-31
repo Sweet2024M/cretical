@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login-style.css">
+</head>
+<body>
+    <header>
+        <img src="img/car-logo.png" alt="Car Logo" class="logo">
+    </header>
+    <div class="hero">
+
+        <div class="text">
+            <h4>Powerful, Fun and</h4>
+            <h1>Fierce to <br> <span>Drive</span></h1>
+            <p>Real Poise, Real Power, Real Perfomance.</p>
+            <!-- <a href="#" class="btn">book a test ride</a> -->
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+          <form action="">
+            <h2>Login</h2>
+            <div class="input-group">
+              <input type="text" required>
+              <label for="">Username</label>
+            </div>
+            <div class="input-group">
+              <input type="password" required>
+              <label for="">Password</label>
+            </div>
+            <div class="remember">
+              <label><input type="checkbox"> Remember me</label>
+            </div>
+            <button id="openNewTab" type="button" onclick="window.location.href='index2.html';">Login</button>
+            <div class="signUp-link">
+              <p>Don't have an account? <a href="#" class="signUpBtn-link">Sign Up</a></p>
+            </div>
+            <div class="forgot-pass-link">
+                <p><a href="#" class="forgotPassBtn-link">Forgot Password?</a></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sign Up  -->
+        <div class="form-wrapper sign-up">
+            <form action="">
+                <h2>Sign Up</h2>
+                <div class="input-group">
+                    <input type="text" required>
+                    <label for="">Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" required>
+                    <label for="">Email</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required label="Password">
+                    <label for="">Password</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required label="Confirm Password">
+                    <label for="">Confirm Password</label>
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" required>
+                    <label for="">Address</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" required maxlength="14" label="Card Number">
+                    <label for="">Card Number</label>
+                </div>
+                <button type="submit">Sign Up</button>
+                <div class="signUp-link">
+                    <p>Already have an account? <a href="#" class="signInBtn-link">Sign In</a></p>
+                   </div>
+               
+            </form>
+        </div>
+         <!-- Forgot Password-->
+      <div class="form-wrapper forgot-pass">
+        <form action="">
+          <h2>Forgot Password?</h2>
+          <p class="pass-p">Enter your email and we'll send you a new password.</p>
+          <div class="input-group">
+            <input type="email" required>
+            <label for="">Email</label>
+          </div>
+          <button type="submit">Submit</button>
+          <div class="signUp-link">
+            <p><a href="#" class="signInBtn-link">Back to Login Page</a></p>
+        </div>
+        </form>
+      </div>
+  </div>
+    </div>
+
+    <script>
+     const signInBtnLinks = document.querySelectorAll('.signInBtn-link'); 
+const signUpBtnLink = document.querySelector('.signUpBtn-link');
+const forgotPassBtnLink = document.querySelector('.forgotPassBtn-link');
+const wrapper = document.querySelector('.wrapper');
+
+signUpBtnLink.addEventListener('click', () => {
+    wrapper.classList.add('active-signup');
+    wrapper.classList.remove('active-forgot');
+});
+
+forgotPassBtnLink.addEventListener('click', () => {
+    wrapper.classList.add('active-forgot');
+    wrapper.classList.remove('active-signup');
+});
+
+signInBtnLinks.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        wrapper.classList.remove('active-signup');
+        wrapper.classList.remove('active-forgot');
+    });
+});
+    </script>
+
+<script>
+    const images = [
+        "url('img/bg.jpg')",
+        "url('img/bg-light.jpg')"
+    ];
+    
+    let currentIndex = 0;
+
+    const hero = document.querySelector('.hero');
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        hero.style.background = `${images[currentIndex]} center/cover no-repeat`;
+    }, 1000);
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const cardNumberInput = document.querySelector('input[label="Card Number"]');
+    const passwordInput = document.querySelector('input[label="Password"]');
+    const confirmPasswordInput = document.querySelector('input[label="Confirm Password"]');
+    const signUpForm = document.querySelector('.form-wrapper.sign-up form');
+
+    signUpForm.addEventListener('submit', (event) => {
+        let errors = [];
+
+        if (cardNumberInput.value.length !== 14 || !/^\d+$/.test(cardNumberInput.value)) {
+            errors.push('Card Number must be exactly 14 digits.');
+        }
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            errors.push('Password and Confirm Password do not match.');
+        }
+
+        if (errors.length > 0) {
+            event.preventDefault(); 
+            alert(errors.join('\n'));   
+        }
+    });
+});
+
+</script>
+
+
+<script>
+    confirmPasswordInput.addEventListener('input', () => {
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            confirmPasswordInput.setCustomValidity('Passwords do not match.');
+        } else {
+            confirmPasswordInput.setCustomValidity('');
+        }
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="payment.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+</head>
+<body>
+  <div class="main-container">
+    <div class="product-details-container">
+      <h2>Car Details</h2>
+      <div class="car-item">
+        <img src="img/car3.jpg" alt="Car Image" style="width: 100%; border-radius: 10px;">
+        <div class="car-info" style="text-align: center; margin-top: 15px;">
+          <h3>Car Model: Tesla Model 3</h3>
+          <p>Price: $35,000</p>
+          <p>Mileage: 15,000 miles</p>
+          <p>Year: 2022</p>
+          <p>Features: Full Self-Driving, Long Range Battery</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-container">
+      <h2>Checkout</h2>
+      <form id="checkout-form">
+        <div class="input-group">
+          <label for="fullname"><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your name" required>
+        </div>
+        <div class="input-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+          <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+          <span id="phone-error" style="color: red; display: none;">Invalid phone number. Please enter a valid number.</span>
+        </div>
+        <div class="input-group">
+          <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+          <input type="text" id="address" name="address" placeholder="Enter your address" required>
+        </div>
+        <div class="input-group">
+          <label for="card-number"><i class="fas fa-credit-card"></i> Card Number</label>
+          <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
+          <span id="card-error" style="color: red; display: none;">Card number must be 14 digits.</span>
+        </div>
+        <div class="summary">
+          <p>Total Quantity: <span>1</span></p>
+          <p>Total Price: <span>$35,000</span></p>
+        </div>
+        <button type="submit" class="checkout-btn"><i class="fas fa-shopping-cart"></i> Checkout</button>
+      </form>
+    </div>
+  </div>
+ 
+  <script>
+    const phoneInput = document.getElementById("phone");
+    const cardNumberInput = document.getElementById("card-number");
+    const checkoutForm = document.getElementById("checkout-form");
+    const phoneError = document.getElementById("phone-error");
+    const cardError = document.getElementById("card-error");
+
+    checkoutForm.addEventListener("submit", function (e) {
+      const phonePattern = /^[+]?[0-9]{10,15}$/; 
+      const cardPattern = /^[0-9]{14}$/; 
+
+      let isValid = true;
+
+      if (!phonePattern.test(phoneInput.value)) {
+        e.preventDefault();
+        phoneError.style.display = "block";
+        isValid = false;
+      } else {
+        phoneError.style.display = "none";
+      }
+
+      if (!cardPattern.test(cardNumberInput.value)) {
+        e.preventDefault();
+        cardError.style.display = "block";
+        isValid = false;
+      } else {
+        cardError.style.display = "none";
+      }
+
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+
+    phoneInput.addEventListener("input", function () {
+      phoneInput.value = phoneInput.value.replace(/[^0-9+]/g, "");
+    });
+
+    cardNumberInput.addEventListener("input", function () {
+      cardNumberInput.value = cardNumberInput.value.replace(/[^0-9]/g, ""); 
+    });
+  </script>
+</body>
+</html>

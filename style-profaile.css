@@ -1,0 +1,189 @@
+/* قواعد أساسية للإعدادات العامة */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container (لترتيب العناصر) */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* السماح بانتقال العناصر إلى سطر جديد إذا كانت الشاشة أصغر */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Profile image */
+.image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.9;
+    border: 3px solid #fff;
+}
+
+/* Profile Card */
+.card {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    border-radius: 61% 39% 52% 48% / 44% 59% 41% 56%;
+    padding: 30px;
+    transition: .5s ease-in-out;
+    margin-bottom: 40px;
+}
+
+.card:hover {
+    border-radius: 50%;
+    transform: translateY(-4px);
+}
+
+/* Form Container */
+.container {
+    width: 100%;
+    padding: 40px;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Input fields */
+.input-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Submit Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #6a5acd;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* استجابة للشاشات الأصغر من 1900 بكسل */
+@media screen and (max-width: 1900px) {
+    .main-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 30px;
+    }
+}
+
+/* استجابة للشاشات الأصغر من 1024 بكسل (التي تشمل الأجهزة اللوحية) */
+@media screen and (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .container, .containerforwater {
+        width: 90%; /* تصغير عرض المحتوى ليظهر بشكل مناسب */
+    }
+
+    /* صورة البروفايل تكون أصغر */
+    .image img {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* الكارد تصبح أصغر */
+    .card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .card-content button {
+        padding: 6px 25px;
+    }
+
+    /* الحقول تصبح أصغر */
+    .input-box input {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* استجابة للشاشات الصغيرة جدًا (الهواتف المحمولة) */
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column; /* ترتيب المحتويات عموديًا */
+        padding: 20px;
+    }
+
+    .main-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container, .containerforwater {
+        width: 100%; /* عرض المحتوى بالكامل */
+        padding: 15px;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px; /* تقليل المسافة بين الكاردات */
+    }
+
+    .image img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .input-box input {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* استجابة للشاشات الصغيرة جدًا جدًا (الشاشات الأقل من 500 بكسل) */
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .input-box input {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .image img {
+        width: 60px;
+        height: 60px;
+    }
+}
